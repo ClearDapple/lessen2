@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    Player player;
+    public Player player;
 
     private Rigidbody rigid;
     private MeshCollider mesh;

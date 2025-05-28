@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    Player player;
+    public Player player;
 
-    private Rigidbody rigid;
-    private MeshCollider mesh;
     public int Heal = 10;
 
 

@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    UIManager uimanager;
+    public UIManager uimanager;
 
     public Animator anime;
     private Rigidbody rigid;
@@ -35,30 +35,17 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
+        //이거 수정
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        Vector3 velocity = moveDirection * moveSpeed;
+        
         if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
         {
             rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGround = false;
-        }
-
-        float horizontalInput = 0;
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            horizontalInput -= 1;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            horizontalInput += 1;
-        }
-
-        float verticalInput = 0;
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            verticalInput += 1;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            verticalInput -= 1;
         }
     }
 

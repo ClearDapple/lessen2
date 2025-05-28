@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static event Action<GameManager> OnGameStart;
-    public static event Action<GameManager> OnGameEnd;
-    public static event Action<GameManager> OnGameOver;
-    public static event Action<GameManager> OnGameClear;
+    public UIManager uimanager;
+
+    public static event Action OnGameStart;
+    public static event Action OnGameEnd;
+    public static event Action OnGameOver;
+    public static event Action OnGameClear;
 
     public GameObject trapPrefab;
     public GameObject instantKillPrefab;
@@ -19,15 +21,26 @@ public class GameManager : MonoBehaviour
     public Transform[] trapPosition = new Transform[15];
     public int[] myScore;
 
+    private int stageLevel = 0;
 
-    void CreateTrap()
+
+    private void Start()
     {
-        for (int i = 0; i < myScore.Length; i++)
-        {
-            GameObject clone = Instantiate(trapPrefab, new Vector3(i * 2.0f, 0, 0), Quaternion.identity);
-            clone.transform.parent = _parent;
-        }
+        NextStage();
     }
 
+    //void CreateTrap()
+    //{
+    //    for (int i = 0; i < myScore.Length; i++)
+    //    {
+    //        GameObject clone = Instantiate(trapPrefab, new Vector3(i * 2.0f, 0, 0), Quaternion.identity);
+    //        clone.transform.parent = _parent;
+    //    }
+    //}
 
+    void NextStage()
+    {
+        stageLevel++;
+        uimanager.GetStage(stageLevel);
+    }
 }

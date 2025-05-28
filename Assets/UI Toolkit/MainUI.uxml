@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="PlayerUI" style="flex-grow: 1; width: 50%;">
-        <ui:ProgressBar value="22" title="my-progress" name="HPBar" style="width: 60%;" />
+        <ui:ProgressBar value="22" title="my-progress" name="HP" style="width: 60%;" />
         <ui:Label text="Label" name="Stage" />
     </ui:VisualElement>
 </ui:UXML>
