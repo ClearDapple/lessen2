@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public UIManager uimanager;
+    public GameManager gamemanager;
 
     public Animator anime;
     private Rigidbody rigid;
@@ -31,12 +32,13 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         HP = 100;
+        Respawn();
     }
 
     void Update()
     {
 
-        //이거 수정
+        //이거 수정:안움직임
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
@@ -52,6 +54,12 @@ public class Player : MonoBehaviour
     public void AddHP(int AddHP)
     {
         HP += AddHP;
+    }
+
+    public void Respawn()
+    {
+        Vector3 respawnPos = new Vector3(1.5f, 5f, gamemanager.verticalCount * gamemanager.tileSpacing / 2).normalized;
+        gameObject.transform.position = respawnPos;
     }
 
     void OnCollisionEnter(Collision collision)

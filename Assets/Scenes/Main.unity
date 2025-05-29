@@ -164,28 +164,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uimanager: {fileID: 1381344408}
-  trapPrefab: {fileID: 0}
-  instantKillPrefab: {fileID: 0}
-  knockBackPrefab: {fileID: 0}
-  moveObstructionPrefab: {fileID: 0}
-  _parent: {fileID: 0}
-  trapPosition:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  myScore: 
+  tilePrefabs: []
+  SandGroundPrefab: {fileID: 2549048037878081452, guid: 71e190382fa398241bf0356c6d1e069d, type: 3}
+  IceGroundPrefab: {fileID: 3318844608206733189, guid: 8b16ca42744ba854fa1c04efa9dff3a1, type: 3}
+  LavaGroundPrefab: {fileID: 1910109935410642484, guid: 79fbeb9c6f895934fbf565ca6f6c6c12, type: 3}
+  WaterGroundPrefab: {fileID: 3788242320750011086, guid: 79f19b1718e60b145b84b19a60bb2830, type: 3}
+  StairsGroundPrefab: {fileID: 3897278740898130418, guid: 80ab52c3c316dcd4ab7d6c49c84b3a62, type: 3}
+  SlopeGroundPrefab: {fileID: 6952472291802365682, guid: 26d5166df84cde04bb839229a800a187, type: 3}
+  horizontalCount: 10
+  verticalCount: 5
+  tileSpacing: 2
+  nomalTrapPrefabs: []
+  DemageTrapPrefab: {fileID: 8765180068455861766, guid: cba787385347236408187caefd167fde, type: 3}
+  KnockBackTrapPrefab: {fileID: 806239106334230454, guid: 3c1cb2d32b067bf4faface4cb2348391, type: 3}
+  MoveObstructionTrapPrefab: {fileID: 8765180068455861766, guid: cba787385347236408187caefd167fde, type: 3}
+  InstantKillTrapPrefab: {fileID: 8962057460008953878, guid: 49a43e2c71847c6449d24ff647212091, type: 3}
+  nomalTrapCount: 10
+  InstantKillTrapCount: 3
+  xPosNullTrap: 3
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +666,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &577589321
@@ -972,7 +968,7 @@ Transform:
   m_GameObject: {fileID: 1607563878}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -20.38, y: 4.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1065,6 +1061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uimanager: {fileID: 1381344408}
+  gamemanager: {fileID: 0}
   anime: {fileID: 0}
   jumpForce: 5
   moveSpeed: 5
@@ -1109,7 +1106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 34769437641202956, guid: 3c1cb2d32b067bf4faface4cb2348391, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 34769437641202956, guid: 3c1cb2d32b067bf4faface4cb2348391, type: 3}
       propertyPath: m_LocalPosition.z
