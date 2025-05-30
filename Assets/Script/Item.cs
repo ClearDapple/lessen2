@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
     public int Heal = 10;
 
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {

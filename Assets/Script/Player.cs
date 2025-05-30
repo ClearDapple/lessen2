@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
             rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGround = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Respawn();
+        }
     }
 
     public void AddHP(int AddHP)
@@ -58,11 +63,10 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
-        Vector3 respawnPos = new Vector3(1.5f, 5f, gamemanager.verticalCount * gamemanager.tileSpacing / 2).normalized;
-        gameObject.transform.position = respawnPos;
+        gameObject.transform.position = new Vector3(1.5f, 5f, gamemanager.verticalCount * gamemanager.tileSpacing / 2f);
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -76,7 +80,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {

@@ -1,6 +1,14 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="PlayerUI" style="flex-grow: 1; width: 50%;">
-        <ui:ProgressBar value="22" title="my-progress" name="HP" style="width: 60%;" />
+    <ui:VisualElement name="PlayerUI" style="flex-grow: 1; width: auto; height: auto;">
+        <ui:ProgressBar value="22" title="my-progress" name="HP" style="width: 30%;" />
         <ui:Label text="Label" name="Stage" />
+    </ui:VisualElement>
+    <ui:VisualElement name="GameClearUI" style="flex-grow: 1; justify-content: space-around; align-items: center;">
+        <ui:Label text="Label" name="ClearMesege" />
+        <ui:Button text="Button" name="NextStage" style="width: 50%; height: 50%;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="GameOverUI" style="flex-grow: 1; align-self: flex-end; align-items: auto; justify-content: flex-start; flex-direction: column-reverse; width: 50%;">
+        <ui:Button text="Game Quit" name="Quit" style="width: auto;" />
+        <ui:Button text="Game Restart" name="Restart" style="width: auto;" />
     </ui:VisualElement>
 </ui:UXML>
