@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TrapManager : MonoBehaviour
 {
+    public GameData gamedata;
     public TileManager tilemanager;
 
     [SerializeField] private Transform trapParent;   // 트랩 부모
@@ -9,17 +10,14 @@ public class TrapManager : MonoBehaviour
     public GameObject[] nomalTrapPrefabs;       //사용할 트랩 프리팹 배열
     public GameObject InstantKillTrapPrefab;    //사용할 즉사 트랩 프리팹 배열
 
-    public int nomalTrapCount = 10;
-    public int InstantKillTrapCount = 3;
-    public float xPosNullTrap = 3f;             //트랩 미발생 x위치
 
 
     public void CreateTrap()
     {
-        for (int i = 0; i < nomalTrapCount; i++)
+        for (int i = 0; i < gamedata.nomalTrapCount; i++)
         {
-            float xPos = UnityEngine.Random.Range(xPosNullTrap, tilemanager.horizontalCount * tilemanager.tileSpacing);// 랜덤 위치 생성
-            float yPos = UnityEngine.Random.Range(xPosNullTrap, tilemanager.verticalCount * tilemanager.tileSpacing);
+            float xPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, tilemanager.gamedata.horizontalCount * tilemanager.gamedata.tileSpacing);// 랜덤 위치 생성
+            float yPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, tilemanager.gamedata.verticalCount * tilemanager.gamedata.tileSpacing);
             float zPos = 3f;
             Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
 
@@ -32,10 +30,10 @@ public class TrapManager : MonoBehaviour
             Instantiate(selectedTrap, randomPosition, randomRotation, trapParent);
         }
 
-        for (int i = 0; i < InstantKillTrapCount; i++)
+        for (int i = 0; i < gamedata.instantKillTrapCount; i++)
         {
-            float xPos = UnityEngine.Random.Range(xPosNullTrap, tilemanager.horizontalCount * tilemanager.tileSpacing);// 랜덤 위치 생성
-            float yPos = UnityEngine.Random.Range(xPosNullTrap, tilemanager.verticalCount * tilemanager.tileSpacing);
+            float xPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, tilemanager.gamedata.horizontalCount * tilemanager.gamedata.tileSpacing);// 랜덤 위치 생성
+            float yPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, tilemanager.gamedata.verticalCount * tilemanager.gamedata.tileSpacing);
             float zPos = 3f;
             Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
 
@@ -43,6 +41,14 @@ public class TrapManager : MonoBehaviour
             Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
 
             Instantiate(InstantKillTrapPrefab, randomPosition, randomRotation, trapParent);
+        }
+    }
+
+    public void DeleteTrap()
+    {
+        foreach (Transform child in trapParent)
+        {
+            Destroy(child.gameObject);
         }
     }
 }

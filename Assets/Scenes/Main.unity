@@ -163,35 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca743abbdbd12244a03766c67a80046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uimanager: {fileID: 1381344408}
-  player: {fileID: 0}
-  groundParent: {fileID: 1848792971}
-  trapParent: {fileID: 1013913205}
-  tilePrefabs:
-  - {fileID: 374094971432775060, guid: 12011b4171c68cb41a9bc0d60f2bdeb9, type: 3}
-  - {fileID: 1851179617599019292, guid: 1149bfebc89be454b92a31e351c58146, type: 3}
-  - {fileID: 3897278740898130418, guid: 80ab52c3c316dcd4ab7d6c49c84b3a62, type: 3}
-  - {fileID: 3332029265211809979, guid: beb77a0d4b0992f42ba71934f698441e, type: 3}
-  - {fileID: 3420400072303653284, guid: f80a8c0c77897fd4898c7556ecf9a333, type: 3}
-  - {fileID: 4615277729485708133, guid: 8e2adabf177dae94891c999b14fb3a71, type: 3}
-  - {fileID: 2549048037878081452, guid: 71e190382fa398241bf0356c6d1e069d, type: 3}
-  - {fileID: 6952472291802365682, guid: 26d5166df84cde04bb839229a800a187, type: 3}
-  - {fileID: 1489411211766806753, guid: db4456f335b87ac41a0a8e1e353217b5, type: 3}
-  - {fileID: 3318844608206733189, guid: 8b16ca42744ba854fa1c04efa9dff3a1, type: 3}
-  - {fileID: 1910109935410642484, guid: 79fbeb9c6f895934fbf565ca6f6c6c12, type: 3}
-  - {fileID: 3788242320750011086, guid: 79f19b1718e60b145b84b19a60bb2830, type: 3}
-  nomalTrapPrefabs:
-  - {fileID: 8765180068455861766, guid: cba787385347236408187caefd167fde, type: 3}
-  - {fileID: 260609586926486459, guid: 3a598eba7256526438394b92e3e607e4, type: 3}
-  - {fileID: 5052242274844980869, guid: bc007463e07fd9240b8b296bdc0ee693, type: 3}
-  - {fileID: 806239106334230454, guid: 3c1cb2d32b067bf4faface4cb2348391, type: 3}
-  InstantKillTrapPrefab: {fileID: 8962057460008953878, guid: 49a43e2c71847c6449d24ff647212091, type: 3}
-  horizontalCount: 10
-  verticalCount: 5
-  tileSpacing: 2
-  nomalTrapCount: 10
-  InstantKillTrapCount: 3
-  xPosNullTrap: 3
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,8 +620,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 787883534}
+  - component: {fileID: 787883535}
   m_Layer: 5
-  m_Name: TileCreatManager
+  m_Name: TileManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,6 +643,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1178593308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787883535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787883533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac3a19f22ec206479b512ef9c3849d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamedata: {fileID: 0}
+  groundParent: {fileID: 0}
+  tilePrefabs: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,8 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f96109c7aa5464419d5fc15eea5eacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamemanager: {fileID: 4736125}
-  MainToolkit: {fileID: 1381344409}
+  gamedata: {fileID: 0}
+  playerdata: {fileID: 0}
 --- !u!114 &1381344409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,8 +904,53 @@ Transform:
   m_Children:
   - {fileID: 1848792971}
   - {fileID: 1013913205}
+  - {fileID: 1651340174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1651340173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651340174}
+  - component: {fileID: 1651340175}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1651340174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651340173}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.702645, y: 2.7897925, z: 2.706682}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1562983153}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651340175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651340173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda3daadb4eae104092d03ad1e2575ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1705913229
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,8 +960,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1705913230}
+  - component: {fileID: 1705913231}
   m_Layer: 5
-  m_Name: TrapCreatManager
+  m_Name: TrapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -950,6 +983,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1178593308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1705913231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705913229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9122f1e3b78caa94c98451fc8d1ff55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamedata: {fileID: 0}
+  tilemanager: {fileID: 0}
+  trapParent: {fileID: 0}
+  nomalTrapPrefabs: []
+  InstantKillTrapPrefab: {fileID: 0}
 --- !u!1 &1848792970
 GameObject:
   m_ObjectHideFlags: 0

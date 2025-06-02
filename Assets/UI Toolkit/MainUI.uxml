@@ -1,14 +1,41 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="PlayerUI" style="flex-grow: 1; width: auto; height: auto;">
-        <ui:ProgressBar value="22" title="my-progress" name="HP" style="width: 30%;" />
-        <ui:Label text="Label" name="Stage" />
+        <ui:ProgressBar value="22" title="my-progress" name="HP" high-value="1111" data-source="project://database/Assets/Script/SO/PlayerDataBinding.asset?fileID=11400000&amp;guid=8ae1e927295b1064f99f7831417a776e&amp;type=2#PlayerDataBinding" style="width: 30%;">
+            <Bindings>
+                <ui:DataBinding property="lowValue" data-source-path="MinHP" binding-mode="ToTarget" />
+                <ui:DataBinding property="highValue" data-source-path="MaxHP" binding-mode="ToTarget" />
+                <ui:DataBinding property="value" data-source-path="HP" binding-mode="ToTarget" />
+                <ui:DataBinding property="title" data-source-path="nowHPUI" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:ProgressBar>
+        <ui:Label text="Label" name="Stage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="nowStageLevelUI" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
     </ui:VisualElement>
     <ui:VisualElement name="GameClearUI" style="flex-grow: 1; justify-content: space-around; align-items: center;">
-        <ui:Label text="Label" name="ClearMesege" />
-        <ui:Button text="Button" name="NextStage" style="width: 50%; height: 50%;" />
+        <ui:Label text="Label" name="ClearMessage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="GameClearMessage" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+        <ui:Button text="Button" name="NextStage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding" style="width: 50%; height: 50%;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="NextStageButtonUI" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Button>
     </ui:VisualElement>
     <ui:VisualElement name="GameOverUI" style="flex-grow: 1; align-self: flex-end; align-items: auto; justify-content: flex-start; flex-direction: column-reverse; width: 50%;">
-        <ui:Button text="Game Quit" name="Quit" style="width: auto;" />
-        <ui:Button text="Game Restart" name="Restart" style="width: auto;" />
+        <ui:Button text="Game Quit" name="Quit" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding" style="width: auto;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="QuitButtonUI" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Button>
+        <ui:Button text="Game Restart" name="Restart" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding" style="width: auto;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="RestartButtonUI" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Button>
     </ui:VisualElement>
 </ui:UXML>
