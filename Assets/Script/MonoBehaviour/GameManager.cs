@@ -1,38 +1,47 @@
 using System;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 
 public class GameManager : MonoBehaviour
 {
-    public static event Action OnGameStartEvent;
-    public static event Action OnGameEndEvent;
-    public static event Action OnGameClearEvent;
+
     public static event Action OnGameOverEvent;
 
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
-    public UIManager uimanager;
     public Player player;
     public TileManager tilemanager;
     public TrapManager trapmanager;
+    public bool isGameEnd = false;
 
 
     private void Start()
     {
-
+        UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
+        gamedata.stageLevel = 0;
     }
 
-    private void Update()
+    public void Update()
     {
+        if (playerdata.HP <= 0 && isGameEnd == false)
+        {
+            isGameEnd = true;
+            OnGameOverEvent?.Invoke();
+        }
+    }
 
+    private void UIManager_OnGameStartEvent()
+    {
+        NextStage();
     }
 
     public void NextStage()
     {
         gamedata.stageLevel++;
-        //uimanager.GetStage(stageLevel);
         ClearStage();
         CreatStage();
+        Respawn();
     }
 
     public void Restart()

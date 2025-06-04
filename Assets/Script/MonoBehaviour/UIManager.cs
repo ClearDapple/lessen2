@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -5,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
+    public static event Action OnGameStartEvent;
+
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
     public TileManager tilemanager;
@@ -43,44 +46,55 @@ public class UIManager : MonoBehaviour
         GameRestartButton = GameOverPage.Q<Button>("Restart");
         GameQuitButton.clicked += OnGameQuitButtonClick;
         GameRestartButton.clicked += OnGameRestartButtonClick;
+
     }
 
     public void Start()
     {
+        ClearPoint.OnGameClearEvent += ClearPoint_OnGameClearEvent;
+        GameManager.OnGameOverEvent += GameManager_OnGameOverEvent;
+
         PlayerPage.visible = true;
         GameClearPage.visible = false;
         GameOverPage.visible = false;
-
-      
+        
+        OnGameStartEvent?.Invoke();
     }
 
-  
-
     private void Update()
+    {
+        GetMyUI();
+    }
+
+    public void GameManager_OnGameStartEvent()
+    {
+        PlayerPage.visible = true;
+        GameClearPage.visible = false;
+        GameOverPage.visible = false;
+        gamemanager.isGameEnd = false;
+    }
+
+    private void ClearPoint_OnGameClearEvent()
+    {
+        PlayerPage.visible = false;
+        GameClearPage.visible = true;
+        GameOverPage.visible = false;
+
+
+    }
+
+    private void GameManager_OnGameOverEvent()
+    {
+        PlayerPage.visible = false;
+        GameClearPage.visible = false;
+        GameOverPage.visible = true;
+    }
+
+    public void GetMyUI()
     {
         playerdata.nowHPUI = playerdata.HP + "/" + playerdata.MaxHP;
         gamedata.nowStageLevelUI = "Stage: " + gamedata.stageLevel;
     }
-
-    //private void GameManager_OnGameStart()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //private void GameManager_OnGameEnd()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //private void GameManager_OnGameOver()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //private void GameManager_OnGameClear()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 
     public void OnNextStageButtonClick()
     {
@@ -94,6 +108,6 @@ public class UIManager : MonoBehaviour
 
     public void OnGameRestartButtonClick()
     {
-        gamemanager.Restart();
+        OnGameStartEvent?.Invoke();
     }
 }

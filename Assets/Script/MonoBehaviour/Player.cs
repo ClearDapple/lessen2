@@ -23,19 +23,19 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            m_PlayerContainer.Translate(-Vector3.left * playerdata.moveSpeed * Time.deltaTime);
+            m_PlayerContainer.Translate(Vector3.left * playerdata.moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            m_PlayerContainer.Translate(-Vector3.right * playerdata.moveSpeed * Time.deltaTime);
+            m_PlayerContainer.Translate(Vector3.right * playerdata.moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            m_PlayerContainer.Translate(-Vector3.forward * playerdata.moveSpeed * Time.deltaTime);
+            m_PlayerContainer.Translate(Vector3.forward * playerdata.moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            m_PlayerContainer.Translate(-Vector3.back * playerdata.moveSpeed * Time.deltaTime);
+            m_PlayerContainer.Translate(Vector3.back * playerdata.moveSpeed * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && playerdata.isGround)

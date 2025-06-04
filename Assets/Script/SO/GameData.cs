@@ -13,7 +13,7 @@ public class GameData : ScriptableObject
     public int instantKillTrapCount = 3;
     public float xPosNullTrap = 3f;     //트랩 미발생 x위치
 
-    public int Demege = -10;
+    public int Demege = 35;
     public int Heal = 10;
 
     public string nowStageLevelUI = "";
