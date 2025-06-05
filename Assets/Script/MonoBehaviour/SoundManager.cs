@@ -33,13 +33,12 @@ public class SoundManager : MonoBehaviour
         playList.Add(AudioType.Jump, jump);
         playList.Add(AudioType.Run, run);
 
-        Trap.OnHitAudio += Trap_HitAudio;
-
+        BaseTrap.OnHitAudio += BaseTrap_OnHitAudio;
     }
 
-    private void Trap_HitAudio(AudioType myType)
+    private void BaseTrap_OnHitAudio(AudioType objType)
     {
-        PlayOneList(myType);
+        PlayOneList(objType);
     }
 
     public void PlayOneList(AudioType myType)

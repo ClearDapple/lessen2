@@ -5,13 +5,13 @@ public class ClearPoint : MonoBehaviour
 {
     public static event Action OnGameClearEvent;
 
-    public GameManager gamemanager;
+    [SerializeField] GameData gamedata;
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            gamemanager.isGameEnd = true;
+            gamedata.isGameEnd = true;
             OnGameClearEvent?.Invoke();
         }
     }

@@ -17,7 +17,7 @@
     <ui:VisualElement name="GameClearUI" style="flex-grow: 1; justify-content: space-around; align-items: center;">
         <ui:Label text="Label" name="ClearMessage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding">
             <Bindings>
-                <ui:DataBinding property="text" data-source-path="GameClearMessage" binding-mode="ToTarget" />
+                <ui:DataBinding property="text" data-source-path="GameClearMessageUI" binding-mode="ToTarget" />
             </Bindings>
         </ui:Label>
         <ui:Button text="Button" name="NextStage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding" style="width: 50%; height: 50%;">

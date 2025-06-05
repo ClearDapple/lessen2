@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    public static event Action<AudioType> OnHitAudio;
+    //public static event Action<AudioType> OnHitAudio;
 
-    [SerializeField] GameData gamedata;
-    [SerializeField] PlayerData playerdata;
+    //[SerializeField] GameData gamedata;
+    //[SerializeField] PlayerData playerdata;
 
     private Rigidbody rigid;
     //private MeshCollider mesh;
@@ -35,12 +35,14 @@ public class Trap : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            playerdata.HP -= gamedata.Demege;
-            OnHitAudio?.Invoke(AudioType.Hit);
-        }
-    }
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        playerdata.HP -= gamedata.Demege;
+    //        Debug.Log("HP = " + playerdata.HP);
+    //        Debug.Log("Demege = " + gamedata.Demege);
+    //        OnHitAudio?.Invoke(AudioType.Hit);
+    //    }
+    //}
 }

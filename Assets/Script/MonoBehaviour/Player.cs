@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        playerdata.HP = 100;
     }
 
     void Update()

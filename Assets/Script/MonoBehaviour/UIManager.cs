@@ -10,9 +10,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
-    public TileManager tilemanager;
-    public TrapManager trapmanager;
-    public GameManager gamemanager;
 
     [SerializeField] UIDocument MainToolkit;
 
@@ -46,7 +43,6 @@ public class UIManager : MonoBehaviour
         GameRestartButton = GameOverPage.Q<Button>("Restart");
         GameQuitButton.clicked += OnGameQuitButtonClick;
         GameRestartButton.clicked += OnGameRestartButtonClick;
-
     }
 
     public void Start()
@@ -71,7 +67,7 @@ public class UIManager : MonoBehaviour
         PlayerPage.visible = true;
         GameClearPage.visible = false;
         GameOverPage.visible = false;
-        gamemanager.isGameEnd = false;
+        gamedata.isGameEnd = false;
     }
 
     private void ClearPoint_OnGameClearEvent()
@@ -79,8 +75,6 @@ public class UIManager : MonoBehaviour
         PlayerPage.visible = false;
         GameClearPage.visible = true;
         GameOverPage.visible = false;
-
-
     }
 
     private void GameManager_OnGameOverEvent()
@@ -98,7 +92,8 @@ public class UIManager : MonoBehaviour
 
     public void OnNextStageButtonClick()
     {
-        gamemanager.NextStage();
+        GameManager_OnGameStartEvent();
+        OnGameStartEvent?.Invoke();
     }
 
     public void OnGameQuitButtonClick()

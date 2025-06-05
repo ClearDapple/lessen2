@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public Player player;
     public TileManager tilemanager;
     public TrapManager trapmanager;
-    public bool isGameEnd = false;
 
 
     private void Start()
@@ -24,23 +23,29 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (playerdata.HP <= 0 && isGameEnd == false)
+        if (playerdata.HP <= 0 && gamedata.isGameEnd == false)
         {
-            isGameEnd = true;
+            gamedata.isGameEnd = true;
             OnGameOverEvent?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Respawn();
         }
     }
 
     private void UIManager_OnGameStartEvent()
     {
+        gamedata.isGameEnd = false;
         NextStage();
     }
 
     public void NextStage()
     {
         gamedata.stageLevel++;
-        ClearStage();
-        CreatStage();
+        //ClearStage();
+        //CreatStage();
         Respawn();
     }
 

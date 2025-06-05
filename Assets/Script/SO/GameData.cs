@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public int stageLevel = 0;
+    public bool isGameEnd = false;
 
     public int horizontalCount = 30;    //가로 개수
     public int verticalCount = 5;       //세로 개수
