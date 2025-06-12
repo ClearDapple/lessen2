@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     public void Start()
     {
         ClearPoint.OnGameClearEvent += ClearPoint_OnGameClearEvent;
-        GameManager.OnGameOverEvent += GameManager_OnGameOverEvent;
+        PlayerData.OnGameOverEvent += GameManager_OnGameOverEvent;
 
         PlayerPage.visible = true;
         GameClearPage.visible = false;

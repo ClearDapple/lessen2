@@ -28,11 +28,22 @@ public class BaseTrap : MonoBehaviour
         }
     }
 
-    public virtual void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            rigid.constraints = RigidbodyConstraints.FreezePositionY;
+        }
+
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerHitEffect();
             OnHitAudio?.Invoke(myType);
         }
+    }
+
+    public virtual void PlayerHitEffect()
+    {
+
     }
 }

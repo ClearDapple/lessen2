@@ -8,15 +8,16 @@ public class Player : MonoBehaviour
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
    
-    //public Animator anime;
+    public Animator anime;
     private Rigidbody rigid;
-
+    private BoxCollider box;
     [SerializeField] Transform m_PlayerContainer; //parent
     [SerializeField] Transform m_Player; //player
 
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        box = GetComponent<BoxCollider>();
         playerdata.HP = 100;
     }
 
@@ -24,18 +25,22 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            transform.rotation = Quaternion.Euler(0, -90, 0);
             m_PlayerContainer.Translate(Vector3.left * playerdata.moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             m_PlayerContainer.Translate(Vector3.right * playerdata.moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             m_PlayerContainer.Translate(Vector3.forward * playerdata.moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             m_PlayerContainer.Translate(Vector3.back * playerdata.moveSpeed * Time.deltaTime);
         }
 
@@ -44,9 +49,6 @@ public class Player : MonoBehaviour
             rigid.AddForce(Vector3.up * playerdata.jumpForce, ForceMode.Impulse);
             playerdata.isGround = false;
         }
-
-        if (playerdata.HP > playerdata.MaxHP) { playerdata.HP = playerdata.MaxHP; }
-        if (playerdata.HP < playerdata.MinHP) { playerdata.HP = playerdata.MinHP; }
     }
 
 

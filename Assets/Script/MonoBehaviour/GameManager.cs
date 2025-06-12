@@ -5,9 +5,6 @@ using UnityEngine.Analytics;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static event Action OnGameOverEvent;
-
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
     public Player player;
@@ -23,12 +20,6 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (playerdata.HP <= 0 && gamedata.isGameEnd == false)
-        {
-            gamedata.isGameEnd = true;
-            OnGameOverEvent?.Invoke();
-        }
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             Respawn();
@@ -38,7 +29,7 @@ public class GameManager : MonoBehaviour
     private void UIManager_OnGameStartEvent()
     {
         gamedata.isGameEnd = false;
-        NextStage();
+        //NextStage();
     }
 
     public void NextStage()

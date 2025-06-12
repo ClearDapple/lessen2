@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class NomalTrap : BaseTrap
 {
-    public override void OnCollisionEnter(Collision collision)
+    public override void PlayerHitEffect()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            base.OnCollisionEnter(collision);
-            //데미지 부여;
-        }
+        //PlayerData.HP-=gamedata.Demege;
     }
 }
