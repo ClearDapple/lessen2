@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df22427d46d7846489931c023863fdb8, type: 3}
   m_Name: GameDataBinding
   m_EditorClassIdentifier: 
-  stageLevel: 0
+  isGameEnd: 1
+  nowStageLevelUI: 'Stage: 0'
+  GameClearMessageUI: Game Clear!
+  NextStageButtonUI: Next Stage
+  QuitButtonUI: Exit Game
+  RestartButtonUI: Continue?
   horizontalCount: 30
   verticalCount: 5
   tileSpacing: 2
@@ -21,4 +26,5 @@ MonoBehaviour:
   xPosNullTrap: 3
   Demege: -10
   Heal: 10
-  GameClearMessage: Game Clear!
+  slowDelayTime: 3
+  knockBackPower: 5

@@ -6,8 +6,8 @@ public class BaseTrap : MonoBehaviour
     public static event Action<AudioType> OnHitAudio;
     public AudioType myType;
 
-    [SerializeField] GameData gmaedata;
-    [SerializeField] PlayerData playerdata;
+    public GameData gamedata;
+    public PlayerData playerdata;
 
     private Rigidbody rigid;
     private MeshCollider mesh;
@@ -28,11 +28,11 @@ public class BaseTrap : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            rigid.constraints = RigidbodyConstraints.FreezePositionY;
+            rigid.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         if (collision.gameObject.CompareTag("Player"))

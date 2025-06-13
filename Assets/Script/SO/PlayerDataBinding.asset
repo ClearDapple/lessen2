@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56cef5d5a2413541843e7eeab95452e, type: 3}
   m_Name: PlayerDataBinding
   m_EditorClassIdentifier: 
-  HP: 100
-  Life: 5
-  JumpForce: 5
-  MoveSpeed: 5
-  BounceForce: 10
+  gamedata: {fileID: 11400000, guid: 7f912d52abe0b0549941ec6ed4d59b4f, type: 2}
+  isGround: 1
+  moveSpeed: 5
+  nomalMoveSpeed: 5
+  SlowMoveSpeed: 3
+  jumpForce: 5
+  nomalJumpForce: 5
+  slowJumpForce: 3
+  MaxHP: 100
+  MinHP: 0
+  nowHPUI: 'HP: 0/100'
+  UIHP: 0
+  MaxLife: 5
+  MinLife: 0
+  nowLifeUI: 'Life: 4/5'
+  UILife: 4

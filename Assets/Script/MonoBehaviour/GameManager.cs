@@ -5,6 +5,7 @@ using UnityEngine.Analytics;
 
 public class GameManager : MonoBehaviour
 {
+
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
     public Player player;
@@ -12,10 +13,16 @@ public class GameManager : MonoBehaviour
     public TrapManager trapmanager;
 
 
+    private void Awake()
+    {
+        gamedata.StageLevel = 0;
+        gamedata.isGameEnd = false;
+    }
+
     private void Start()
     {
         UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
-        gamedata.stageLevel = 0;
+
     }
 
     public void Update()
@@ -34,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
-        gamedata.stageLevel++;
+        gamedata.StageLevel++;
         //ClearStage();
         //CreatStage();
         Respawn();

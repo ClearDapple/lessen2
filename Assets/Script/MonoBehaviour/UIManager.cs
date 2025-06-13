@@ -47,21 +47,46 @@ public class UIManager : MonoBehaviour
 
     public void Start()
     {
+        PlayerData.OnDeathEvent += PlayerData_OnDeathEvent;
+        PlayerData.OnGameOverEvent += PlayerData_OnGameOverEvent;
         ClearPoint.OnGameClearEvent += ClearPoint_OnGameClearEvent;
-        PlayerData.OnGameOverEvent += GameManager_OnGameOverEvent;
 
-        PlayerPage.visible = true;
-        GameClearPage.visible = false;
-        GameOverPage.visible = false;
-        
-        OnGameStartEvent?.Invoke();
+        UIManager_OnGameStartEvent();
     }
 
     private void Update()
     {
-        GetMyUI();
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            playerdata.HP -= 5;
+        }
     }
 
+    public void UIManager_OnGameStartEvent()
+    {
+        OnGameStartEvent?.Invoke();
+        PlayerPage.visible = true;
+        GameClearPage.visible = false;
+        GameOverPage.visible = false;
+    }
+
+    public void PlayerData_OnDeathEvent()
+    {
+        PlayerPage.visible = false;
+        GameClearPage.visible = false;
+        GameOverPage.visible = true;
+    }
+
+    public void PlayerData_OnGameOverEvent()
+    {
+
+    }
+    private void ClearPoint_OnGameClearEvent()
+    {
+        PlayerPage.visible = false;
+        GameClearPage.visible = true;
+        GameOverPage.visible = false;
+    }
     public void GameManager_OnGameStartEvent()
     {
         PlayerPage.visible = true;
@@ -70,30 +95,11 @@ public class UIManager : MonoBehaviour
         gamedata.isGameEnd = false;
     }
 
-    private void ClearPoint_OnGameClearEvent()
-    {
-        PlayerPage.visible = false;
-        GameClearPage.visible = true;
-        GameOverPage.visible = false;
-    }
-
-    private void GameManager_OnGameOverEvent()
-    {
-        PlayerPage.visible = false;
-        GameClearPage.visible = false;
-        GameOverPage.visible = true;
-    }
-
-    public void GetMyUI()
-    {
-        playerdata.nowHPUI = playerdata.HP + "/" + playerdata.MaxHP;
-        gamedata.nowStageLevelUI = "Stage: " + gamedata.stageLevel;
-    }
+///
 
     public void OnNextStageButtonClick()
     {
-        GameManager_OnGameStartEvent();
-        OnGameStartEvent?.Invoke();
+        UIManager_OnGameStartEvent();
     }
 
     public void OnGameQuitButtonClick()
@@ -103,6 +109,6 @@ public class UIManager : MonoBehaviour
 
     public void OnGameRestartButtonClick()
     {
-        OnGameStartEvent?.Invoke();
+        UIManager_OnGameStartEvent();
     }
 }

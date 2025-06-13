@@ -3,8 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
 public class GameData : ScriptableObject
 {
-    public int stageLevel = 0;
-    public bool isGameEnd = false;
+    public bool isGameEnd;
+    
+    public string nowStageLevelUI = "";
+    public string GameClearMessageUI = "Game Clear!";
+    public string NextStageButtonUI = "Next Stage";
+    public string QuitButtonUI = "Exit Game";
+    public string RestartButtonUI = "Continue?";
 
     public int horizontalCount = 30;    //가로 개수
     public int verticalCount = 5;       //세로 개수
@@ -17,9 +22,15 @@ public class GameData : ScriptableObject
     public int Demege = 35;
     public int Heal = 10;
 
-    public string nowStageLevelUI = "";
-    public string GameClearMessageUI = "Game Clear!";
-    public string NextStageButtonUI = "Next Stage";
-    public string QuitButtonUI = "Exit Game";
-    public string RestartButtonUI = "Continue?";
+    public float slowDelayTime = 3f;
+    public float knockBackPower = 5;
+
+    private int stagelevel;
+    public int StageLevel
+    {
+        get { return stagelevel; }
+        set { stagelevel = value;
+            nowStageLevelUI = "Stage: " + stagelevel;
+        }
+    }
 }

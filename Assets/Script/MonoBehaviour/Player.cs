@@ -14,11 +14,18 @@ public class Player : MonoBehaviour
     [SerializeField] Transform m_PlayerContainer; //parent
     [SerializeField] Transform m_Player; //player
 
+    private void Awake()
+    {
+        playerdata.Life = playerdata.MaxLife;
+        playerdata.HP = playerdata.MaxHP;
+        playerdata.isGround = false;
+    }
+
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
         box = GetComponent<BoxCollider>();
-        playerdata.HP = 100;
+        UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
     }
 
     void Update()
@@ -51,17 +58,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void UIManager_OnGameStartEvent()
+    {
+        playerdata.Life = playerdata.MaxLife;
+        playerdata.HP = playerdata.MaxHP;
+        playerdata.isGround = false;
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             playerdata.isGround = true;
-        }
-
-        if (collision.gameObject.CompareTag("Trap"))
-        {
-            playerdata.HP -= gamedata.Demege;
         }
     }
 

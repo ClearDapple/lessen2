@@ -1,11 +1,19 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="PlayerUI" style="flex-grow: 1; width: auto; height: auto;">
-        <ui:ProgressBar value="22" title="my-progress" name="HP" high-value="1111" data-source="project://database/Assets/Script/SO/PlayerDataBinding.asset?fileID=11400000&amp;guid=8ae1e927295b1064f99f7831417a776e&amp;type=2#PlayerDataBinding" style="width: 30%;">
+        <ui:ProgressBar value="50" title="my-progress" name="HP" high-value="1111" data-source="project://database/Assets/Script/SO/PlayerDataBinding.asset?fileID=11400000&amp;guid=8ae1e927295b1064f99f7831417a776e&amp;type=2#PlayerDataBinding" style="width: 30%;">
             <Bindings>
                 <ui:DataBinding property="lowValue" data-source-path="MinHP" binding-mode="ToTarget" />
                 <ui:DataBinding property="highValue" data-source-path="MaxHP" binding-mode="ToTarget" />
-                <ui:DataBinding property="value" data-source-path="HP" binding-mode="ToTarget" />
                 <ui:DataBinding property="title" data-source-path="nowHPUI" binding-mode="ToTarget" />
+                <ui:DataBinding property="value" data-source-path="UIHP" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:ProgressBar>
+        <ui:ProgressBar value="3" title="0" name="Life" data-source="project://database/Assets/Script/SO/PlayerDataBinding.asset?fileID=11400000&amp;guid=8ae1e927295b1064f99f7831417a776e&amp;type=2#PlayerDataBinding" style="width: 15%;">
+            <Bindings>
+                <ui:DataBinding property="lowValue" data-source-path="MinLife" binding-mode="ToTarget" />
+                <ui:DataBinding property="highValue" data-source-path="MaxLife" binding-mode="ToTarget" />
+                <ui:DataBinding property="title" data-source-path="nowLifeUI" binding-mode="ToTarget" />
+                <ui:DataBinding property="value" data-source-path="UILife" binding-mode="ToTarget" />
             </Bindings>
         </ui:ProgressBar>
         <ui:Label text="Label" name="Stage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding">
