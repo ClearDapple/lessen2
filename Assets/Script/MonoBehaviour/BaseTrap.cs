@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class BaseTrap : MonoBehaviour
 {
-    public static event Action<AudioType> OnHitAudio;
-    public AudioType myType;
+    public static event Action<VFXType, Vector3> OnHitVFXEvent;
+    public static event Action<AudioType> OnHitAudioEvent;
+    public VFXType myVFXType;
+    public AudioType myAudioType;
 
     public GameData gamedata;
     public PlayerData playerdata;
 
-    private Rigidbody rigid;
-    private MeshCollider mesh;
+    protected Rigidbody rigid;
+    protected MeshCollider mesh;
 
     public void Start()
     {
@@ -38,7 +40,8 @@ public class BaseTrap : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerHitEffect();
-            OnHitAudio?.Invoke(myType);
+            OnHitVFXEvent?.Invoke(myVFXType, collision.transform.position);
+            OnHitAudioEvent?.Invoke(myAudioType);
         }
     }
 

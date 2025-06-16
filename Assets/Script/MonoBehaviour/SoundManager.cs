@@ -5,6 +5,7 @@ using UnityEngine;
 public enum AudioType
 {
     Hit,
+    Death,
     Over,
     Clear,
     Item,
@@ -33,17 +34,12 @@ public class SoundManager : MonoBehaviour
         playList.Add(AudioType.Jump, jump);
         playList.Add(AudioType.Run, run);
 
-        BaseTrap.OnHitAudio += BaseTrap_OnHitAudio;
+        BaseTrap.OnHitAudioEvent += BaseTrap_OnHitAudioEvent;
     }
 
-    private void BaseTrap_OnHitAudio(AudioType objType)
+    private void BaseTrap_OnHitAudioEvent(AudioType objType)
     {
-        PlayOneList(objType);
-    }
-
-    public void PlayOneList(AudioType myType)
-    {
-        AudioClip clip = playList[myType];
+        AudioClip clip = playList[objType];
 
         AudioSource.PlayClipAtPoint(clip, transform.position);
         Debug.Log("audio clip name: " + clip.name);

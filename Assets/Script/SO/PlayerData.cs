@@ -22,55 +22,82 @@ public class PlayerData : ScriptableObject
     public int MaxHP = 100;
     public int MinHP = 0;
     public string nowHPUI = "";
+    public int HP;
     public int UIHP;
 
-    private int hp;
-    public int HP
-    {
-        get { return hp; }
-        set { hp = value;
-            if (hp < MinHP)
-            {
-                hp = MinHP;
-            }
+    //private int hp;
+    //public int HP
+    //{
+    //    get { return hp; }
+    //    set { hp = value;
+    //        if (hp < MinHP)
+    //        {
+    //            hp = MinHP;
+    //        }
 
-            if (hp == MinHP && gamedata.isGameEnd == false)
-            {
-                Life--;
-                gamedata.isGameEnd = true;
-                OnDeathEvent?.Invoke();
-            }
+    //        if (hp == MinHP && gamedata.isGameEnd == false)
+    //        {
+    //            Life--;
+    //            gamedata.isGameEnd = true;
+    //            OnDeathEvent?.Invoke();
+    //        }
 
-            if (hp > MaxHP)
-            {
-                hp = MaxHP;
-            }
-            UIHP = hp;
-            nowHPUI = "HP: " + UIHP + "/" + MaxHP;
-        }
-    }
+    //        if (hp > MaxHP)
+    //        {
+    //            hp = MaxHP;
+    //        }
+
+    //        UIHP = hp;
+    //        nowHPUI = "HP: " + UIHP + "/" + MaxHP;
+    //    }
+    //}
 
     public int MaxLife = 5;
     public int MinLife = 0;
     public string nowLifeUI = "";
+    public int Life;
     public int UILife;
 
-    private int life;
-    public int Life
-    {
-        get { return life; }
-        set { life = value;
-            if (life < MinLife)
-            {
-                life = MinLife;
-            }
+    //private int life;
+    //public int Life
+    //{
+    //    get { return life; }
+    //    set { life = value;
+    //        if (life < MinLife)
+    //        {
+    //            life = MinLife;
+    //        }
 
-            if (life == MinLife)
-            {
-                OnGameOverEvent?.Invoke();
-            }
-            UILife = life;
-            nowLifeUI = "Life: " + UILife + "/" + MaxLife;
+    //        if (life == MinLife)
+    //        {
+    //            OnGameOverEvent?.Invoke();
+    //        }
+    //        UILife = life;
+    //        nowLifeUI = "Life: " + UILife + "/" + MaxLife;
+    //    }
+    //}
+
+    public void UpdateHP(int value)
+    {
+        HP = Mathf.Clamp(value, MinHP, MaxHP);
+        if (HP == MinHP && !gamedata.isGameEnd)
+        {
+            Life--;
+            gamedata.isGameEnd = true;
+            OnDeathEvent?.Invoke();
         }
+        UIHP = HP;
+        nowHPUI = $"HP: {UIHP}/{MaxHP}";
+    }
+
+    public void UpdateLife(int value)
+    {
+        Life = Mathf.Clamp(value, MinLife, MaxLife);
+        if (Life == MinLife)
+        {
+            OnGameOverEvent?.Invoke();
+        }
+        UILife = Life;
+        nowLifeUI = $"Life: {UILife}/{MaxLife}";
     }
 }
