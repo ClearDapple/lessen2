@@ -49,17 +49,9 @@ public class UIManager : MonoBehaviour
     {
         PlayerData.OnDeathEvent += PlayerData_OnDeathEvent;
         PlayerData.OnGameOverEvent += PlayerData_OnGameOverEvent;
-        ClearPoint.OnGameClearEvent += ClearPoint_OnGameClearEvent;
+        Player.OnGameClearEvent += Player_OnGameClearEvent;
 
         UIManager_OnGameStartEvent();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            playerdata.HP -= 5;
-        }
     }
 
     public void UIManager_OnGameStartEvent()
@@ -81,12 +73,14 @@ public class UIManager : MonoBehaviour
     {
 
     }
-    private void ClearPoint_OnGameClearEvent()
+
+    public void Player_OnGameClearEvent()
     {
         PlayerPage.visible = false;
         GameClearPage.visible = true;
         GameOverPage.visible = false;
     }
+
     public void GameManager_OnGameStartEvent()
     {
         PlayerPage.visible = true;
@@ -109,6 +103,7 @@ public class UIManager : MonoBehaviour
 
     public void OnGameRestartButtonClick()
     {
+        
         UIManager_OnGameStartEvent();
     }
 }

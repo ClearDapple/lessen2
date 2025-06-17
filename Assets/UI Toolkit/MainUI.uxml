@@ -5,7 +5,7 @@
                 <ui:DataBinding property="lowValue" data-source-path="MinHP" binding-mode="ToTarget" />
                 <ui:DataBinding property="highValue" data-source-path="MaxHP" binding-mode="ToTarget" />
                 <ui:DataBinding property="title" data-source-path="nowHPUI" binding-mode="ToTarget" />
-                <ui:DataBinding property="value" data-source-path="UIHP" binding-mode="ToTarget" />
+                <ui:DataBinding property="value" data-source-path="HP" binding-mode="ToTarget" />
             </Bindings>
         </ui:ProgressBar>
         <ui:ProgressBar value="3" title="0" name="Life" data-source="project://database/Assets/Script/SO/PlayerDataBinding.asset?fileID=11400000&amp;guid=8ae1e927295b1064f99f7831417a776e&amp;type=2#PlayerDataBinding" style="width: 15%;">
@@ -13,7 +13,7 @@
                 <ui:DataBinding property="lowValue" data-source-path="MinLife" binding-mode="ToTarget" />
                 <ui:DataBinding property="highValue" data-source-path="MaxLife" binding-mode="ToTarget" />
                 <ui:DataBinding property="title" data-source-path="nowLifeUI" binding-mode="ToTarget" />
-                <ui:DataBinding property="value" data-source-path="UILife" binding-mode="ToTarget" />
+                <ui:DataBinding property="value" data-source-path="Life" binding-mode="ToTarget" />
             </Bindings>
         </ui:ProgressBar>
         <ui:Label text="Label" name="Stage" data-source="project://database/Assets/Script/SO/GameDataBinding.asset?fileID=11400000&amp;guid=7f912d52abe0b0549941ec6ed4d59b4f&amp;type=2#GameDataBinding">

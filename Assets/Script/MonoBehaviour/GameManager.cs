@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
     public Player player;
-    public TileManager tilemanager;
-    public TrapManager trapmanager;
 
 
     private void Awake()
@@ -25,27 +23,19 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
-    }
-
     private void UIManager_OnGameStartEvent()
     {
+        Respawn();
         gamedata.isGameEnd = false;
-        //NextStage();
     }
 
-    public void NextStage()
-    {
-        gamedata.StageLevel++;
-        //ClearStage();
-        //CreatStage();
-        Respawn();
-    }
+    //public void NextStage()
+    //{
+    //    gamedata.StageLevel++;
+    //    //ClearStage();
+    //    //CreatStage();
+    //    Respawn();
+    //}
 
     public void Restart()
     {
@@ -55,17 +45,5 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         player.gameObject.transform.position = new Vector3(1.5f, 5f, gamedata.verticalCount * gamedata.tileSpacing / 2f);
-    }
-
-    public void CreatStage()
-    {
-        tilemanager.CreatGround();
-        trapmanager.CreateTrap();
-    }
-
-    public void ClearStage()
-    {
-        tilemanager.DeleteGround();
-        trapmanager.DeleteTrap();
     }
 }

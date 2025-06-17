@@ -4,19 +4,19 @@ public class StageManager : MonoBehaviour
 {
     [SerializeField] GameData gamedata;
 
-    [SerializeField] GameObject[] _Trap;
-    [SerializeField] Transform[] _position;
-    [SerializeField] Transform _parent;
-    [SerializeField] Transform _3DTiles;
+    //[SerializeField] GameObject[] _Trap;
+    //[SerializeField] Transform[] _position;
+    //[SerializeField] Transform _parent;
+    //[SerializeField] Transform _3DTiles;
     [SerializeField] GameObject _collectable;//item
-    [SerializeField] Transform _startPoint;//시작지점
-    [SerializeField] Transform _ClearPoint;//종료지점
+    //[SerializeField] Transform _startPoint;//시작지점
+    //[SerializeField] Transform _ClearPoint;//종료지점
 
     //
 
     [SerializeField] private Transform groundParent;    // 타일 부모
 
-    public GameObject[] tilePrefabs;    //사용할 타일 프리팹 배열
+    public GameObject[] GroundPrefabs;    //사용할 타일 프리팹 배열
 
     //
 
@@ -29,9 +29,15 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        _3DTiles.transform.Clear();
-        _parent.transform.Clear();
+        UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
+    }
 
+    private void UIManager_OnGameStartEvent()
+    {
+        DeleteGround();
+        DeleteTrap();
+        //CreatGround();
+        //CreateTrap();
     }
 
     //
@@ -42,8 +48,8 @@ public class StageManager : MonoBehaviour
         {
             for (int xRow = 0; xRow < gamedata.horizontalCount; xRow++) //가로 범위
             {
-                int randomTileIndex = UnityEngine.Random.Range(0, tilePrefabs.Length);  //랜덤한 타일 프리팹 선택
-                GameObject randomTile = tilePrefabs[randomTileIndex];
+                int randomTileIndex = UnityEngine.Random.Range(0, GroundPrefabs.Length);  //랜덤한 타일 프리팹 선택
+                GameObject randomTile = GroundPrefabs[randomTileIndex];
 
                 int randomRotationAngle = UnityEngine.Random.Range(0, 4) * 90;  //90도 간격으로 랜덤한 방향 설정
                 Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
@@ -69,6 +75,12 @@ public class StageManager : MonoBehaviour
 
     public void CreateTrap()
     {
+        //for (int i = 0; i < gamedata.nomalTrapCount; i++)
+        //{
+        //    GameObject clone = Instantiate(_Trap[Random.Range(0, _Trap.Length)], _position[i].position, Quaternion.identity);
+        //    clone.transform.parent = _parent;
+        //}
+
         for (int i = 0; i < gamedata.nomalTrapCount; i++)//노말트랩
         {
             float xPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.horizontalCount * gamedata.tileSpacing);// 랜덤 위치 생성
@@ -76,8 +88,9 @@ public class StageManager : MonoBehaviour
             float zPos = 3f;
             Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
 
-            int randomRotationAngle = UnityEngine.Random.Range(0, 360); //랜덤한 방향 설정
-            Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+            //int randomRotationAngle = UnityEngine.Random.Range(0, 360); //랜덤한 방향 설정
+            //Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+            Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
 
             int randomTrapIndex = UnityEngine.Random.Range(0, nomalTrapPrefabs.Length);// 랜덤 트랩 선택
             GameObject randomTrap = nomalTrapPrefabs[randomTrapIndex];
@@ -92,8 +105,9 @@ public class StageManager : MonoBehaviour
             float zPos = 3f;
             Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
 
-            int randomRotationAngle = UnityEngine.Random.Range(0, 360); //랜덤한 방향 설정
-            Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+            //int randomRotationAngle = UnityEngine.Random.Range(0, 360); //랜덤한 방향 설정
+            //Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+            Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
 
             int randomTrapIndex = UnityEngine.Random.Range(0, InstantKillTrapPrefab.Length);// 랜덤 트랩 선택
             GameObject randomTrap = InstantKillTrapPrefab[randomTrapIndex];

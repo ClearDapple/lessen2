@@ -10,6 +10,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] GameData gamedata;
 
     public bool isGround;
+    public bool isMoveable;
 
     public float moveSpeed;
     public float nomalMoveSpeed = 5f;
@@ -18,12 +19,6 @@ public class PlayerData : ScriptableObject
     public float jumpForce;
     public float nomalJumpForce = 5f;
     public float slowJumpForce = 3f;
-
-    public int MaxHP = 100;
-    public int MinHP = 0;
-    public string nowHPUI = "";
-    public int HP;
-    public int UIHP;
 
     //private int hp;
     //public int HP
@@ -51,12 +46,22 @@ public class PlayerData : ScriptableObject
     //        nowHPUI = "HP: " + UIHP + "/" + MaxHP;
     //    }
     //}
+    public int MaxHP = 100;
+    public int MinHP = 0;
+    public string nowHPUI = "";
+    public int HP;
 
-    public int MaxLife = 5;
-    public int MinLife = 0;
-    public string nowLifeUI = "";
-    public int Life;
-    public int UILife;
+    public void UpdateHP(int value)
+    {
+        HP = Mathf.Clamp(value, MinHP, MaxHP);
+        if (HP == MinHP && !gamedata.isGameEnd)
+        {
+            Life--;
+            gamedata.isGameEnd = true;
+            OnDeathEvent?.Invoke();
+        }
+        nowHPUI = $"HP: {HP}/{MaxHP}";
+    }
 
     //private int life;
     //public int Life
@@ -76,19 +81,10 @@ public class PlayerData : ScriptableObject
     //        nowLifeUI = "Life: " + UILife + "/" + MaxLife;
     //    }
     //}
-
-    public void UpdateHP(int value)
-    {
-        HP = Mathf.Clamp(value, MinHP, MaxHP);
-        if (HP == MinHP && !gamedata.isGameEnd)
-        {
-            Life--;
-            gamedata.isGameEnd = true;
-            OnDeathEvent?.Invoke();
-        }
-        UIHP = HP;
-        nowHPUI = $"HP: {UIHP}/{MaxHP}";
-    }
+    public int MaxLife = 5;
+    public int MinLife = 0;
+    public string nowLifeUI = "";
+    public int Life;
 
     public void UpdateLife(int value)
     {
@@ -97,7 +93,8 @@ public class PlayerData : ScriptableObject
         {
             OnGameOverEvent?.Invoke();
         }
-        UILife = Life;
-        nowLifeUI = $"Life: {UILife}/{MaxLife}";
+        nowLifeUI = $"Life: {Life}/{MaxLife}";
     }
+
+
 }

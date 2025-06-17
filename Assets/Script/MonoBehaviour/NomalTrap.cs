@@ -4,6 +4,6 @@ public class NomalTrap : BaseTrap
 {
     public override void PlayerHitEffect()
     {
-        playerdata.HP -= gamedata.Demege;
+        playerdata.UpdateHP(playerdata.HP - gamedata.Damege);
     }
 }

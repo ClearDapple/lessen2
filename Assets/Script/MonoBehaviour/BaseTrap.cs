@@ -30,7 +30,7 @@ public class BaseTrap : MonoBehaviour
         }
     }
 
-    public virtual void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
