@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     {
         PlayerData.OnDeathEvent += PlayerData_OnDeathEvent;
         PlayerData.OnGameOverEvent += PlayerData_OnGameOverEvent;
-        Player.OnGameClearEvent += Player_OnGameClearEvent;
+        ClearPoint.OnGameClearEvent += ClearPoint_OnGameClearEvent;
 
         UIManager_OnGameStartEvent();
     }
@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void Player_OnGameClearEvent()
+    public void ClearPoint_OnGameClearEvent()
     {
         PlayerPage.visible = false;
         GameClearPage.visible = true;

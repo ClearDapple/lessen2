@@ -12,21 +12,23 @@ public class BaseTrap : MonoBehaviour
     public PlayerData playerdata;
 
     protected Rigidbody rigid;
-    protected MeshCollider mesh;
+    protected BoxCollider box;
 
     public void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        mesh = GetComponent<MeshCollider>();
+        box= GetComponent<BoxCollider>();
+        //mesh = GetComponent<MeshCollider>();
 
-        mesh.enabled = true;
+        //mesh.enabled = true;
+        box.enabled = true;
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            mesh.enabled = true;
+            box.enabled = true;
         }
     }
 

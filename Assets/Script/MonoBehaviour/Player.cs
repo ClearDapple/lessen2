@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public static event Action OnGameClearEvent;
-
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
    
@@ -22,6 +20,7 @@ public class Player : MonoBehaviour
         playerdata.UpdateLife(playerdata.MaxLife);
         playerdata.UpdateHP(playerdata.MaxHP);
         playerdata.isGround = false;
+        playerdata.isMoveable = true;
     }
 
     void Start()
@@ -30,7 +29,10 @@ public class Player : MonoBehaviour
         box = GetComponent<BoxCollider>();
         UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
         PlayerData.OnDeathEvent += PlayerData_OnDeathEvent;
+        KnockBackTrap.OnKnockBackEvent += KnockBackTrap_OnKnockBackEvent;
     }
+
+
 
     void Update()
     {
@@ -83,14 +85,19 @@ public class Player : MonoBehaviour
         gamedata.isGameEnd = true;
     }
 
+    private void KnockBackTrap_OnKnockBackEvent()
+    {
+        ApplyKnockback(gamedata.knockBackPower);  // 넉백 효과 적용
+    }
+
     public void ApplyKnockback(float power)
     {
-        //rigid.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
 
         Vector3 knockbackDirection = new Vector3(-1, 1, 0).normalized;
         rigid.AddForce(knockbackDirection * power, ForceMode.Impulse);
 
-        //rigid.rotation = Quaternion.Euler(0, 90, 0);
+        transform.rotation = Quaternion.Euler(0, 90, 0);
 
         rigid.useGravity = false;  // 넉백 중에는 중력 비활성화
         rigid.freezeRotation = true;//넉백 중에는 중력 비활성화
@@ -106,15 +113,6 @@ public class Player : MonoBehaviour
         rigid.useGravity = true;  // 중력 다시 활성화
         rigid.freezeRotation = false;//회전 다시 활성화
         playerdata.isMoveable = true;// 조작 다시 활성화
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("ClearPoint"))//클리어포인트
-        {
-            gamedata.isGameEnd = true;
-            OnGameClearEvent?.Invoke();
-        }
     }
 
     public void OnCollisionEnter(Collision collision)

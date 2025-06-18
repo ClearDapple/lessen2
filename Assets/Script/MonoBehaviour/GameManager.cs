@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
-
     }
 
     private void UIManager_OnGameStartEvent()

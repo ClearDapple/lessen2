@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Scripting;
 
 public class StageManager : MonoBehaviour
 {
@@ -8,24 +9,21 @@ public class StageManager : MonoBehaviour
     //[SerializeField] Transform[] _position;
     //[SerializeField] Transform _parent;
     //[SerializeField] Transform _3DTiles;
-    [SerializeField] GameObject _collectable;//item
     //[SerializeField] Transform _startPoint;//시작지점
     //[SerializeField] Transform _ClearPoint;//종료지점
+    [SerializeField] private Transform groundParent;        // 타일 부모
+    [SerializeField] private Transform trapParent;          // 트랩 부모
+    [SerializeField] private Transform collectableParent;   // 아이템 부모
+    [SerializeField] private Transform clearPointParent;    // 클리어포인트 부모
 
-    //
+    public GameObject[] GroundPrefabs;          //사용할 타일 프리팹 배열
 
-    [SerializeField] private Transform groundParent;    // 타일 부모
+    public GameObject[] InstantKillTrapPrefab;  //사용할 즉사 트랩 프리팹 배열
+    public GameObject[] nomalTrapPrefabs;       //사용할 노말 트랩 프리팹 배열
 
-    public GameObject[] GroundPrefabs;    //사용할 타일 프리팹 배열
+    public GameObject[] CollectablePrefab;      //사용할 아이템 프리팹 배열
 
-    //
-
-    [SerializeField] private Transform trapParent;   // 트랩 부모
-
-    public GameObject[] nomalTrapPrefabs;       //사용할 트랩 프리팹 배열
-    public GameObject[] InstantKillTrapPrefab;    //사용할 즉사 트랩 프리팹 배열
-
-    //
+    public GameObject _ClearPoint;              //사용할 클리어포인트 프리팹
 
     private void Start()
     {
@@ -34,10 +32,22 @@ public class StageManager : MonoBehaviour
 
     private void UIManager_OnGameStartEvent()
     {
+        DeleteAll();
+        CreateAll();
+    }
+
+    public void DeleteAll()
+    {
         DeleteGround();
         DeleteTrap();
-        //CreatGround();
-        //CreateTrap();
+        DeleteClearPoint();
+    }
+
+    public void CreateAll()
+    {
+        CreatGround();
+        CreateTrap();
+        CreateClearPoint();
     }
 
     //
@@ -119,6 +129,22 @@ public class StageManager : MonoBehaviour
     public void DeleteTrap()
     {
         foreach (Transform child in trapParent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    public void CreateClearPoint()
+    {
+        Vector3 clearPosition = new Vector3(gamedata.horizontalCount * gamedata.tileSpacing, 5f, gamedata.verticalCount * gamedata.tileSpacing / 2f);
+        Quaternion clearRotation = Quaternion.Euler(0f, 0f, 0f);
+
+        GameObject clone = Instantiate(_ClearPoint, clearPosition, clearRotation, clearPointParent);
+    }
+
+    public void DeleteClearPoint()
+    {
+        foreach (Transform child in clearPointParent)
         {
             Destroy(child.gameObject);
         }

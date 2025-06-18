@@ -1,12 +1,12 @@
+using System;
 using UnityEngine;
 
 public class KnockBackTrap : BaseTrap
 {
-    public Player player;
-
+    public static event Action OnKnockBackEvent;
 
     public override void PlayerHitEffect()
     {
-        player.ApplyKnockback(gamedata.knockBackPower);  // 넉백 효과 적용
+        OnKnockBackEvent?.Invoke();
     }
 }
