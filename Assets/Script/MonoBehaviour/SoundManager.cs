@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip item;
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip run;
+    [SerializeField] AudioClip death;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class SoundManager : MonoBehaviour
         playList.Add(AudioType.Item, item);
         playList.Add(AudioType.Jump, jump);
         playList.Add(AudioType.Run, run);
+        playList.Add(AudioType.Death, death);
 
         BaseTrap.OnHitAudioEvent += BaseTrap_OnHitAudioEvent;
     }

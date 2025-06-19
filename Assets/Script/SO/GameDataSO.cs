@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
+[CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameDataSO")]
 public class GameData : ScriptableObject
 {
     public bool isGameEnd;

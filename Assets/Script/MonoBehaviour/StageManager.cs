@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -25,10 +27,43 @@ public class StageManager : MonoBehaviour
 
     public GameObject _ClearPoint;              //»ç¿ëÇÒ Å¬¸®¾îÆ÷ÀÎÆ® ÇÁ¸®ÆÕ
 
+    public StageLevelOS[] stageLevel;
+    public StageLevelOS currentStageLevel;
+
     private void Start()
     {
         UIManager.OnGameStartEvent += UIManager_OnGameStartEvent;
+        //BaseTrap.OnTrapDeleteEvent += BaseTrap_OnTrapDeleteEvent;
     }
+
+    //////public void CreateCurrentStage(StageLevelOS currentStage)
+    //////{
+    //////    GameObject[] gameObjects = new GameObject[5];
+    //////    List<GameObject> myObject = new List<GameObject>();
+
+    //////    for (int i = 0; i < currentStage.NomalTrapAddCount; i++)
+    //////    {
+    //////        GameObject clone = Instantiate(nomalTrapPrefabs[UnityEngine.Random.Range(0, trapParent.Length)], trapParent.position);
+    //////        myObject.Add(clone);
+    //////    }
+    //////}
+
+    //private void BaseTrap_OnTrapDeleteEvent()
+    //{
+    //    int xPos = (int)UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.horizontalCount * gamedata.tileSpacing);// ·£´ý À§Ä¡ »ý¼º
+    //    int yPos = (int)UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.verticalCount * gamedata.tileSpacing);
+    //    float zPos = 3f;
+    //    Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
+
+    //    //int randomRotationAngle = UnityEngine.Random.Range(0, 360); //·£´ýÇÑ ¹æÇâ ¼³Á¤
+    //    //Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+    //    Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
+
+    //    int randomTrapIndex = UnityEngine.Random.Range(0, nomalTrapPrefabs.Length);// ·£´ý Æ®·¦ ¼±ÅÃ
+    //    GameObject randomTrap = nomalTrapPrefabs[randomTrapIndex];
+
+    //    Instantiate(randomTrap, randomPosition, randomRotation, trapParent);
+    //}
 
     private void UIManager_OnGameStartEvent()
     {
@@ -91,27 +126,11 @@ public class StageManager : MonoBehaviour
         //    clone.transform.parent = _parent;
         //}
 
-        for (int i = 0; i < gamedata.nomalTrapCount; i++)//³ë¸»Æ®·¦
+
+        for (int i = 0; i < gamedata.instantKillTrapCount + currentStageLevel.NomalTrapAddCount; i++)//Áï»çÆ®·¦
         {
-            float xPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.horizontalCount * gamedata.tileSpacing);// ·£´ý À§Ä¡ »ý¼º
-            float yPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.verticalCount * gamedata.tileSpacing);
-            float zPos = 3f;
-            Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
-
-            //int randomRotationAngle = UnityEngine.Random.Range(0, 360); //·£´ýÇÑ ¹æÇâ ¼³Á¤
-            //Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
-            Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
-
-            int randomTrapIndex = UnityEngine.Random.Range(0, nomalTrapPrefabs.Length);// ·£´ý Æ®·¦ ¼±ÅÃ
-            GameObject randomTrap = nomalTrapPrefabs[randomTrapIndex];
-
-            Instantiate(randomTrap, randomPosition, randomRotation, trapParent);
-        }
-
-        for (int i = 0; i < gamedata.instantKillTrapCount; i++)//Áï»çÆ®·¦
-        {
-            float xPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.horizontalCount * gamedata.tileSpacing);// ·£´ý À§Ä¡ »ý¼º
-            float yPos = UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.verticalCount * gamedata.tileSpacing);
+            int xPos = (int)UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.horizontalCount * gamedata.tileSpacing);// ·£´ý À§Ä¡ »ý¼º
+            int yPos = (int)UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.verticalCount * gamedata.tileSpacing);
             float zPos = 3f;
             Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
 
@@ -121,6 +140,22 @@ public class StageManager : MonoBehaviour
 
             int randomTrapIndex = UnityEngine.Random.Range(0, InstantKillTrapPrefab.Length);// ·£´ý Æ®·¦ ¼±ÅÃ
             GameObject randomTrap = InstantKillTrapPrefab[randomTrapIndex];
+
+            Instantiate(randomTrap, randomPosition, randomRotation, trapParent);
+        }
+        for (int i = 0; i < gamedata.nomalTrapCount+ currentStageLevel.InstansKillTrapAddCount; i++)//³ë¸»Æ®·¦
+        {
+            int xPos = (int)UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.horizontalCount * gamedata.tileSpacing);// ·£´ý À§Ä¡ »ý¼º
+            int yPos = (int)UnityEngine.Random.Range(gamedata.xPosNullTrap, gamedata.verticalCount * gamedata.tileSpacing);
+            float zPos = 3f;
+            Vector3 randomPosition = new Vector3(xPos, yPos, zPos);
+
+            //int randomRotationAngle = UnityEngine.Random.Range(0, 360); //·£´ýÇÑ ¹æÇâ ¼³Á¤
+            //Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+            Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
+
+            int randomTrapIndex = UnityEngine.Random.Range(0, nomalTrapPrefabs.Length);// ·£´ý Æ®·¦ ¼±ÅÃ
+            GameObject randomTrap = nomalTrapPrefabs[randomTrapIndex];
 
             Instantiate(randomTrap, randomPosition, randomRotation, trapParent);
         }
@@ -136,7 +171,7 @@ public class StageManager : MonoBehaviour
 
     public void CreateClearPoint()
     {
-        Vector3 clearPosition = new Vector3(gamedata.horizontalCount * gamedata.tileSpacing, 5f, gamedata.verticalCount * gamedata.tileSpacing / 2f);
+        Vector3 clearPosition = new Vector3(gamedata.horizontalCount * gamedata.tileSpacing, 2f, gamedata.verticalCount-1 * gamedata.tileSpacing / 2f);
         Quaternion clearRotation = Quaternion.Euler(0f, 0f, 0f);
 
         GameObject clone = Instantiate(_ClearPoint, clearPosition, clearRotation, clearPointParent);

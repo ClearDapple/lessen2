@@ -20,11 +20,6 @@ public class ClearPoint : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            rigid.constraints = RigidbodyConstraints.FreezeAll;
-        }
-
         if (collision.gameObject.CompareTag("Player"))
         {
             gamedata.isGameEnd = true;

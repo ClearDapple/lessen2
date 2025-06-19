@@ -36,11 +36,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKey(KeyCode.Q))
-        //{
-        //    rigid.rotation = Quaternion.Euler(0, 90, 0);
-        //}
-
         if (gamedata.isGameEnd == false && playerdata.isMoveable == true)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -99,20 +94,19 @@ public class Player : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 90, 0);
 
-        rigid.useGravity = false;  // 넉백 중에는 중력 비활성화
-        rigid.freezeRotation = true;//넉백 중에는 중력 비활성화
-        playerdata.isMoveable = false;// 넉백 중에는 조작 비활성화
+        rigid.useGravity = false;       // 넉백 중에는 중력 비활성화
+        //rigid.freezeRotation = true;  //넉백 중에는 회전 비활성화
+        playerdata.isMoveable = false;  // 넉백 중에는 조작 비활성화
 
-        // 일정 시간이 지난 후, 다시 활성화
-        StartCoroutine(ReturnAfterKnockback());
+        StartCoroutine(ReturnAfterKnockback()); // 일정 시간이 지난 후, 다시 활성화
     }
 
     private IEnumerator ReturnAfterKnockback()
     {
         yield return new WaitForSeconds(0.5f);  // 넉백 후 0.5초 뒤
-        rigid.useGravity = true;  // 중력 다시 활성화
-        rigid.freezeRotation = false;//회전 다시 활성화
-        playerdata.isMoveable = true;// 조작 다시 활성화
+        rigid.useGravity = true;                // 중력 다시 활성화
+        //rigid.freezeRotation = false;         //회전 다시 활성화
+        playerdata.isMoveable = true;           // 조작 다시 활성화
     }
 
     public void OnCollisionEnter(Collision collision)
