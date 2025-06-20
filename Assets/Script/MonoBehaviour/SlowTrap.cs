@@ -5,7 +5,7 @@ public class SlowTrap : BaseTrap
 {
     public override void PlayerHitEffect()
     {
-        playerdata.moveSpeed = playerdata.SlowMoveSpeed;
+        playerdata.moveSpeed = playerdata.slowMoveSpeed;
 
         StartCoroutine(PlayerMoveSpeedReturn(gamedata.slowDelayTime));
         

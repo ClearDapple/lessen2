@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BaseTrap : MonoBehaviour
 {
-    public static event Action OnTrapDeleteEvent;
     public static event Action<VFXType, Vector3> OnHitVFXEvent;
     public static event Action<AudioType> OnHitAudioEvent;
     public VFXType myVFXType;
@@ -19,9 +18,7 @@ public class BaseTrap : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         box= GetComponent<BoxCollider>();
-        //mesh = GetComponent<MeshCollider>();
 
-        //mesh.enabled = true;
         box.enabled = true;
     }
 
@@ -35,12 +32,6 @@ public class BaseTrap : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Trap"))
-        {
-            OnTrapDeleteEvent?.Invoke();
-            Destroy(gameObject);
-        }
-
         if (collision.gameObject.CompareTag("Ground"))
         {
             rigid.constraints = RigidbodyConstraints.FreezeAll;

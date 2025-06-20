@@ -5,7 +5,7 @@ using UnityEngine.Analytics;
 
 public class GameManager : MonoBehaviour
 {
-
+    [SerializeField] StageLevelSO stagelevelSO;
     [SerializeField] GameData gamedata;
     [SerializeField] PlayerData playerdata;
     public Player player;
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        gamedata.StageLevel = 0;
+        stagelevelSO.stageLevel = 1;
         gamedata.isGameEnd = false;
     }
 

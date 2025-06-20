@@ -4,6 +4,6 @@ public class InstantKillTrap : BaseTrap
 {
     public override void PlayerHitEffect()
     {
-        playerdata.UpdateHP(playerdata.MinHP);
+        playerdata.UpdateHP(playerdata.minHP);
     }
 }

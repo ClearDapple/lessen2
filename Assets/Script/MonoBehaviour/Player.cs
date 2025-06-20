@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        playerdata.UpdateLife(playerdata.MaxLife);
-        playerdata.UpdateHP(playerdata.MaxHP);
+        playerdata.UpdateLife(playerdata.maxLife);
+        playerdata.UpdateHP(playerdata.maxHP);
         playerdata.isGround = false;
         playerdata.isMoveable = true;
     }
@@ -69,8 +69,8 @@ public class Player : MonoBehaviour
 
     private void UIManager_OnGameStartEvent()
     {
-        playerdata.UpdateLife(playerdata.MaxLife);
-        playerdata.UpdateHP(playerdata.MaxHP);
+        playerdata.UpdateLife(playerdata.maxLife);
+        playerdata.UpdateHP(playerdata.maxHP);
         playerdata.isGround = false;
         playerdata.isMoveable = true;
     }
